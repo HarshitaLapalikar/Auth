@@ -1,27 +1,34 @@
 import * as actionTypes from './actionTypes';
 import { createBrowserHistory } from 'history';
 
-export const authStart = () => {
-    return{
-        type: actionTypes.AUTH_START
-    };
-};
+// export const authStart = () => {
+//     return{
+//         type: actionTypes.AUTH_START
+//     };
+// };
 
-export const authSuccess = (authData) => {
-    return {
-        type: actionTypes.AUTH_SUCCESS,
-        authData: authData
-    };
-};
+// export const authSuccess = (authData) => {
+//     return {
+//         type: actionTypes.AUTH_SUCCESS,
+//         authData: authData
+//     };
+// };
+
+//     export const logout = () => {
+//     userName.logout();
+//     return{
+//         type: userName.LOGOUT
+//     };
+// };
 
 export const history = createBrowserHistory();
 
-export const authFail = (error) => {
-    return{
-        type: actionTypes.AUTH_FAIL,
-        error: error
-    };
-};
+// export const authFail = (error) => {
+//     return{
+//         type: actionTypes.AUTH_FAIL,
+//         error: error
+//     };
+// };
 
 export const auth = (values) => {
         return dispatch => {
@@ -38,19 +45,19 @@ export const auth = (values) => {
         .then(response => {
             
             console.log(response, "response");  
-            alert("logged in")
+            //alert("logged in")
             
             //     console.log("api successful", response);
-            //     localStorage.setItem("token", response.token);
+                localStorage.setItem("token", response.token);
             //     alert("before dispatch");
                 dispatch({
                      type: actionTypes.AUTH_SUCCESS,
                      payload: response.token
                 })
-                alert("after dispatch");
+               // alert("after dispatch");
             
-            alert("outside if")
-              console.log(localStorage.getItem('token'));
+           // alert("outside if")
+              console.log(localStorage.getItem('token'), "token");
               window.location.href = "/home";
         
     })  
@@ -58,9 +65,10 @@ export const auth = (values) => {
                 console.log('error', err)
                 alert("Authentication failed");
             })
-        
-        
+
+                
+
+            }
         
         
         };
-}
