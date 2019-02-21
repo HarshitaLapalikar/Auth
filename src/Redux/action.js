@@ -65,10 +65,26 @@ export const auth = (values) => {
                 console.log('error', err)
                 alert("Authentication failed");
             })
-
-                
-
-            }
+         
+         }
         
         
-        };
+   };
+
+   export const getToken = () => {
+       return(dispatch) => {
+           const promise = new Promise((resolve, reject) => {
+               var tokenfromStorage = localStorage.getItem('token')
+              if(tokenfromStorage){
+                  console.log(tokenfromStorage, 'TokenfromStorage')
+                  resolve(tokenfromStorage);
+                }
+                    else{
+                        console.log('error getting token')
+                        reject(null);
+                    }
+           })
+
+           return promise;
+       }
+   }
